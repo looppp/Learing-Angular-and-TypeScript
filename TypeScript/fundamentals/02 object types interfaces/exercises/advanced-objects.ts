@@ -55,7 +55,7 @@ let updatePayload: ProductUpdate = {
 
 interface BaseEntity {
     id: number;
-    createdAt: string;
+    createdAt: Date;
 }
 
 type Auditable = {
@@ -66,7 +66,9 @@ type Auditable = {
 interface User {
     name: string;
     email?: string;
-    age: number
+    age: number;
+    address: string;
+    preferences: string;
 }
 
 type AuditedEntity<T> = T & BaseEntity & Auditable;
@@ -76,14 +78,17 @@ type AuditedUser = AuditedEntity<User>;
 
 let auditedUser: AuditedUser = {
     id: 41245,
-    createdAt: "8 November 2016 19:16:02",
-    updatedAt: new Date("9 November 2016 16:16:02"),
+    createdAt: new Date("2016-11-08T19:16:02"),
+    updatedAt: new Date("2016-11-09T19:16:02"),
     updatedBy: "Georgi",
     name: "Georgi Ivanov",
     email: "Georgi@abv.bg",
-    age: 33
-
+    age: 33,
+    address: "Hristo Botev 9",
+    preferences: "limited"
 }
+
+console.log("Audited User:", auditedUser);
 
 // Exercise 5: Define interface OrderItem { productId: number; quantity: number; price: number; }
 // Define type Order = {
